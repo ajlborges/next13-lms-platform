@@ -5,7 +5,7 @@ import { db } from "@/lib/db";
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { courseId: string; chapterId: string } }
+  { params }: { params: { courseId: string; chapterId: string } },
 ) {
   try {
     const { userId } = auth();
@@ -17,8 +17,8 @@ export async function PATCH(
     const ownCourse = await db.course.findUnique({
       where: {
         id: params.courseId,
-        userId
-      }
+        userId,
+      },
     });
 
     if (!ownCourse) {
@@ -29,16 +29,22 @@ export async function PATCH(
       where: {
         id: params.chapterId,
         courseId: params.courseId,
-      }
+      },
     });
 
     const muxData = await db.muxData.findUnique({
       where: {
         chapterId: params.chapterId,
-      }
+      },
     });
 
-    if (!chapter || !muxData || !chapter.title || !chapter.description || !chapter.videoUrl) {
+    if (
+      !chapter ||
+      !muxData ||
+      !chapter.title ||
+      !chapter.description ||
+      !chapter.videoUrl
+    ) {
       return new NextResponse("Missing required fields", { status: 400 });
     }
 
@@ -49,12 +55,12 @@ export async function PATCH(
       },
       data: {
         isPublished: true,
-      }
+      },
     });
 
     return NextResponse.json(publishedChapter);
   } catch (error) {
     console.log("[CHAPTER_PUBLISH]", error);
-    return new NextResponse("Internal Error", { status: 500 }); 
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }

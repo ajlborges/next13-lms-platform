@@ -13,7 +13,7 @@ async function main() {
         { name: "Accounting" },
         { name: "Engineering" },
         { name: "Filming" },
-      ]
+      ],
     });
 
     console.log("Success");

@@ -31,7 +31,7 @@ const CreatePage = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: ""
+      title: "",
     },
   });
 
@@ -45,16 +45,15 @@ const CreatePage = () => {
     } catch {
       toast.error("Something went wrong");
     }
-  }
+  };
 
-  return ( 
+  return (
     <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
       <div>
-        <h1 className="text-2xl">
-          Name your course
-        </h1>
+        <h1 className="text-2xl">Name your course</h1>
         <p className="text-sm text-slate-600">
-          What would you like to name your course? Don&apos;t worry, you can change this later.
+          What would you like to name your course? Don&apos;t worry, you can
+          change this later.
         </p>
         <Form {...form}>
           <form
@@ -66,9 +65,7 @@ const CreatePage = () => {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    Course title
-                  </FormLabel>
+                  <FormLabel>Course title</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
@@ -85,17 +82,11 @@ const CreatePage = () => {
             />
             <div className="flex items-center gap-x-2">
               <Link href="/">
-                <Button
-                  type="button"
-                  variant="ghost"
-                >
+                <Button type="button" variant="ghost">
                   Cancel
                 </Button>
               </Link>
-              <Button
-                type="submit"
-                disabled={!isValid || isSubmitting}
-              >
+              <Button type="submit" disabled={!isValid || isSubmitting}>
                 Continue
               </Button>
             </div>
@@ -103,7 +94,7 @@ const CreatePage = () => {
         </Form>
       </div>
     </div>
-   );
-}
- 
+  );
+};
+
 export default CreatePage;

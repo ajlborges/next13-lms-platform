@@ -5,7 +5,7 @@ import { db } from "@/lib/db";
 
 export async function POST(
   req: Request,
-  { params }: { params: { courseId: string } }
+  { params }: { params: { courseId: string } },
 ) {
   try {
     const { userId } = auth();
@@ -19,7 +19,7 @@ export async function POST(
       where: {
         id: params.courseId,
         userId: userId,
-      }
+      },
     });
 
     if (!courseOwner) {
@@ -42,7 +42,7 @@ export async function POST(
         title,
         courseId: params.courseId,
         position: newPosition,
-      }
+      },
     });
 
     return NextResponse.json(chapter);

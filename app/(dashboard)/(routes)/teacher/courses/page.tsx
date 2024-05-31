@@ -22,11 +22,11 @@ const CoursesPage = async () => {
     },
   });
 
-  return ( 
+  return (
     <div className="p-6">
       <DataTable columns={columns} data={courses} />
     </div>
-   );
-}
- 
+  );
+};
+
 export default CoursesPage;

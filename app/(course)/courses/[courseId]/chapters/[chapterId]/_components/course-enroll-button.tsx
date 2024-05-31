@@ -24,7 +24,7 @@ export const CourseEnrollButton = ({
     try {
       setIsLoading(true);
 
-      const response = await axios.post(`/api/courses/${courseId}/checkout`)
+      const response = await axios.post(`/api/courses/${courseId}/checkout`);
 
       window.location.assign(response.data.url);
     } catch {
@@ -32,7 +32,7 @@ export const CourseEnrollButton = ({
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   return (
     // <Button
@@ -43,18 +43,17 @@ export const CourseEnrollButton = ({
     // >
     //   Enroll for {formatPrice(price)}
     // </Button>
-    <Link 
+    <Link
       href="https://1985609f-7839-4819-8840-2d38548e4ea5.ma.bw-cloud-instance.org/dhbw-login"
       className={cn(
         buttonVariants({
-          variant: 'default',
-          size: 'sm',
+          variant: "default",
+          size: "sm",
         }),
         "w-full md:w-auto bg-blue-500",
       )}
-      
     >
       Launch Notebook
     </Link>
-  )
-}
+  );
+};

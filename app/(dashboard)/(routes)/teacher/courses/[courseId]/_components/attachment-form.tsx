@@ -15,7 +15,7 @@ import { FileUpload } from "@/components/file-upload";
 interface AttachmentFormProps {
   initialData: Course & { attachments: Attachment[] };
   courseId: string;
-};
+}
 
 const formSchema = z.object({
   url: z.string().min(1),
@@ -23,7 +23,7 @@ const formSchema = z.object({
 
 export const AttachmentForm = ({
   initialData,
-  courseId
+  courseId,
 }: AttachmentFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -54,16 +54,14 @@ export const AttachmentForm = ({
     } finally {
       setDeletingId(null);
     }
-  }
+  };
 
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
         Course attachments
         <Button onClick={toggleEdit} variant="ghost">
-          {isEditing && (
-            <>Cancel</>
-          )}
+          {isEditing && <>Cancel</>}
           {!isEditing && (
             <>
               <PlusCircle className="h-4 w-4 mr-2" />
@@ -87,9 +85,7 @@ export const AttachmentForm = ({
                   className="flex items-center p-3 w-full bg-sky-100 border-sky-200 border text-sky-700 rounded-md"
                 >
                   <File className="h-4 w-4 mr-2 flex-shrink-0" />
-                  <p className="text-xs line-clamp-1">
-                    {attachment.name}
-                  </p>
+                  <p className="text-xs line-clamp-1">{attachment.name}</p>
                   {deletingId === attachment.id && (
                     <div>
                       <Loader2 className="h-4 w-4 animate-spin" />
@@ -125,5 +121,5 @@ export const AttachmentForm = ({
         </div>
       )}
     </div>
-  )
-}
+  );
+};
