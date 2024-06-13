@@ -78,23 +78,6 @@ export default function HeroSection() {
                 Zusammenarbeiten nahtlos integriert.
               </p>
             </div>
-            {/* <div className="w-1/2">
-              <h2 className="flex items-center font-semibold text-[1em] text-[#1a2b3b]">
-                Platform
-              </h2>
-              <p className="text-[14px] leading-[20px] text-[#1a2b3b] font-normal">
-                Gestalten Sie Ihre Zukunft in Data Science und Machine Learning mit Databrix &minus; der Plattform, die Lernen, Anwenden und Zusammenarbeiten nahtlos integriert.
-              </p>
-            </div>
-            <div className="w-1/2">
-              <h2 className="flex items-center font-semibold text-[1em] text-[#1a2b3b]">
-                Community
-              </h2>
-              <p className="text-[14px] leading-[20px] text-[#1a2b3b] font-normal">
-                Join a community of like-minded individuals, and learn from each
-                other.
-              </p>
-            </div> */}
           </motion.div>
 
           <div className="flex gap-[15px] mt-8 md:mt-0">
@@ -107,19 +90,7 @@ export default function HeroSection() {
                 ease: [0.075, 0.82, 0.965, 1],
               }}
             >
-              {/* <Link
-                href="http://193.196.53.107"
-                target="_blank"
-                className="group rounded-full px-4 py-2 text-[13px] font-medium transition-all flex items-center justify-center bg-[#1E2B3A] text-white hover:[linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), #0D2247] no-underline flex gap-x-2  active:scale-95 scale-100 duration-75"
-                style={{
-                  boxShadow:
-                    "0px 1px 4px rgba(13, 34, 71, 0.17), inset 0px 0px 0px 1px #061530, inset 0px 0px 0px 2px rgba(255, 255, 255, 0.1)",
-                }}
-              >
-                App starten
-              </Link> */}
               <Link
-                // href="http://193.196.53.107"
                 href="/sign-in"
                 target="_blank"
                 className="group rounded-full px-4 py-2 text-[13px] font-medium transition-all flex items-center justify-center bg-[#1E2B3A] text-white hover:[linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), #0D2247] no-underline flex gap-x-2  active:scale-95 scale-100 duration-75"
@@ -199,7 +170,7 @@ export default function HeroSection() {
           }}
           id="gradient-canvas"
           data-transition-in
-          className="z-50 fixed top-0 right-[-2px] w-[80%] md:w-1/2 h-screen bg-[#c3e4ff]"
+          className="z-40 fixed top-0 right-[-2px] w-[80%] md:w-1/2 h-screen bg-[#c3e4ff]"
         ></motion.canvas>
       </div>
     </AnimatePresence>

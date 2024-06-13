@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write \"**/*.{ts,js,tsx,css,json}\"",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "email": "email dev --dir /emails"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.31.2",
@@ -26,6 +27,9 @@
     "@radix-ui/react-progress": "^1.0.3",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
+    "@react-email/button": "^0.0.11",
+    "@react-email/components": "^0.0.10",
+    "@react-email/html": "^0.0.6",
     "@tanstack/react-table": "^8.9.11",
     "@uploadthing/react": "^5.5.0",
     "autoprefixer": "10.4.15",
@@ -38,17 +42,20 @@
     "framer-motion": "^11.2.10",
     "lucide-react": "^0.276.0",
     "next": "^13.5.6",
+    "next-view-transitions": "^0.2.0",
     "prettier": "^3.0.3",
     "query-string": "^8.1.0",
     "react": "18.2.0",
     "react-confetti": "^6.1.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
+    "react-email": "^1.9.5",
     "react-hook-form": "^7.46.1",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.11.0",
     "react-quill": "^2.0.0",
     "recharts": "^2.8.0",
+    "resend": "^1.1.0",
     "sonner": "^1.4.41",
     "stripe": "^13.6.0",
     "typescript": "5.2.2",
@@ -64,8 +71,8 @@
     "@types/react-dom": "18.2.7",
     "postcss": "8.4.29",
     "prisma": "^5.3.0",
-    "tailwindcss-animate": "^1.0.7",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss": "3.3.3"
+    "tailwindcss": "3.3.3",
+    "tailwindcss-animate": "^1.0.7"
   }
 }

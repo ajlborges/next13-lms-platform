@@ -5,7 +5,7 @@ import { fontBold, fontMedium, fontSemiBold } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
-import { LogoFooter } from "@/components/layouts/footer";
+import { LogoFooter } from "@/components/sections/footer-section";
 
 export const metadata: Metadata = {
   title: {
