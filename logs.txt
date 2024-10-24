@@ -1,0 +1,88 @@
+Creating a Role-Based Access Control (RBAC) feature for an institution like ETH Zurich involves defining various roles and their corresponding permissions. Here’s a breakdown of potential roles and permissions you might consider:
+
+### 1. **Roles**
+
+- **Admin**
+  - Full access to all system features.
+  - Can manage users, roles, and permissions.
+  - Can oversee all content and configurations.
+
+- **Instructor/Professor**
+  - Create, edit, and delete courses and course materials.
+  - Enroll and manage students in their courses.
+  - Access student performance and feedback.
+
+- **Teaching Assistant (TA)**
+  - Assist instructors in managing courses.
+  - Grade assignments and exams.
+  - Communicate with students regarding course materials.
+
+- **Student**
+  - Access course materials and resources.
+  - Submit assignments and exams.
+  - View grades and feedback.
+
+- **Guest/Visitor**
+  - Limited access to public content.
+  - Cannot submit assignments or access sensitive information.
+
+- **Staff**
+  - Manage administrative tasks (e.g., student admissions, scheduling).
+  - Access specific reports and analytics.
+
+### 2. **Permissions**
+
+#### General Permissions
+
+- **View Content**
+  - Permission to view courses, materials, and announcements.
+
+- **Create Content**
+  - Permission to create new courses, assignments, or resources.
+
+- **Edit Content**
+  - Permission to modify existing courses, assignments, or resources.
+
+- **Delete Content**
+  - Permission to remove courses, assignments, or resources.
+
+#### Course Management Permissions
+
+- **Enroll Students**
+  - Permission to add or remove students from courses.
+
+- **Grade Assignments**
+  - Permission to evaluate and provide feedback on student submissions.
+
+#### Administrative Permissions
+
+- **Manage Users**
+  - Permission to create, edit, or delete user accounts and roles.
+
+- **View Reports**
+  - Permission to access analytics and performance reports.
+
+- **Configure Settings**
+  - Permission to change system settings and configurations.
+
+### 3. **Implementation Considerations**
+
+- **Hierarchical Roles**: Consider if roles should inherit permissions from other roles (e.g., TAs might inherit some permissions from Instructors).
+- **Granular Permissions**: Be specific with permissions to provide flexibility (e.g., allowing an instructor to edit their own courses but not others).
+- **Audit Logs**: Implement logging to track who accessed or modified content for accountability.
+- **User Management Interface**: Create an intuitive UI for managing roles and permissions.
+
+### 4. **Compliance and Security**
+
+- Ensure compliance with data protection regulations (e.g., GDPR).
+- Implement secure authentication methods (e.g., multi-factor authentication).
+
+### 5. **Feedback Loop**
+
+- Gather feedback from users (instructors, students, staff) to refine roles and permissions over time.
+
+This structure can help ETH Zurich manage access effectively while ensuring that each role can perform its necessary functions within the LMS or application. If you have any specific requirements or scenarios in mind, feel free to share!
+
+/teacher/courses
+/teacher/create
+npx prisma studio
