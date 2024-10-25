@@ -1,8 +1,5 @@
 # Build an LMS Platform: Next.js 13,  React, Stripe, Mux, Prisma, Tailwind, MySQL | Full Course 2023
 
-![Copy of Copy of Copy of Copy of Fullstack Twitter Clone (9)](https://github.com/AntonioErdeljac/next13-lms-platform/assets/23248726/fa077fca-bb74-419a-84de-54ac103bb026)
-
-
 This is a repository for Build an LMS Platform: Next.js 13,  React, Stripe, Mux, Prisma, Tailwind, MySQL | Full Course 2023
 
 [VIDEO TUTORIAL](https://www.youtube.com/watch?v=Big_aFLmekI)
@@ -33,7 +30,7 @@ Key Features:
 ### Cloning the repository
 
 ```shell
-git clone https://github.com/AntonioErdeljac/next13-lms-platform.git
+git clone https://github.com/MrChike/next13-lms-platform.git
 ```
 
 ### Install packages
@@ -52,6 +49,7 @@ NEXT_PUBLIC_CLERK_SIGN_IN_URL=
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=
 NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=
+NEXT_PUBLIC_APP_URL=http://localhost:3000
 
 DATABASE_URL=
 
@@ -62,7 +60,6 @@ MUX_TOKEN_ID=
 MUX_TOKEN_SECRET=
 
 STRIPE_API_KEY=
-NEXT_PUBLIC_APP_URL=http://localhost:3000
 STRIPE_WEBHOOK_SECRET=
 
 NEXT_PUBLIC_TEACHER_ID=
@@ -73,9 +70,10 @@ NEXT_PUBLIC_TEACHER_ID=
 Add MySQL Database (I used PlanetScale)
 
 ```shell
+npx prisma migrate reset
 npx prisma generate
 npx prisma db push
-
+npx prisma studio
 ```
 
 ### Start the app

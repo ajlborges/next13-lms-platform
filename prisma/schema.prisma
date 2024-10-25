@@ -1,10 +1,10 @@
 generator client {
   provider = "prisma-client-js"
-  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+  previewFeatures = ["fullTextSearch", "fullTextIndex", "driverAdapters"]
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
   relationMode = "prisma"
 }
@@ -16,19 +16,19 @@ enum MemberRole {
 }
 
 model Profile {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @unique
-  name String
-  imageUrl String?  
-  email String  
+  id        String  @id @default(uuid()) @db.Uuid
+  userId    String  @unique
+  name      String
+  imageUrl  String?  
+  email     String  
 
-  role MemberRole @default(STUDENT)
+  role      MemberRole @default(STUDENT)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Course {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  id          String     @id @default(uuid()) @db.Uuid
   userId      String
   title       String
   description String?
@@ -36,26 +36,24 @@ model Course {
   price       Float?
   isPublished Boolean    @default(false)
 
-  categoryId  String?    @db.ObjectId
+  categoryId  String?    @db.Uuid
   category    Category?  @relation(fields: [categoryId], references: [id])
   attachments Attachment[]
   chapters    Chapter[] 
-  purchases Purchase[]
+  purchases   Purchase[]
 
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 
   @@index([categoryId])
-  @@fulltext([title])
-  
 }
 
 model Attachment {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  id        String     @id @default(uuid()) @db.Uuid
   name      String
   url       String
 
-  courseId  String     @db.ObjectId
+  courseId  String     @db.Uuid
   course    Course     @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   createdAt DateTime   @default(now())
@@ -65,7 +63,7 @@ model Attachment {
 }
 
 model Category {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  id        String     @id @default(uuid()) @db.Uuid
   name      String
   courses   Course[]
 
@@ -74,7 +72,7 @@ model Category {
 }
 
 model Chapter {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  id          String     @id @default(uuid()) @db.Uuid
   title       String
   description String?
   videoUrl    String?
@@ -84,7 +82,7 @@ model Chapter {
 
   muxData     MuxData?
 
-  courseId    String     @db.ObjectId
+  courseId    String     @db.Uuid
   course      Course     @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   userProgress UserProgress[]
@@ -96,19 +94,19 @@ model Chapter {
 }
 
 model MuxData {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  id          String     @id @default(uuid()) @db.Uuid
   assetId     String
   playbackId  String?
 
-  chapterId   String     @unique @db.ObjectId
+  chapterId   String     @unique @db.Uuid
   chapter     Chapter    @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 }
 
 model UserProgress {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  id          String     @id @default(uuid()) @db.Uuid
   userId      String
 
-  chapterId   String     @db.ObjectId
+  chapterId   String     @db.Uuid
   chapter     Chapter    @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 
   isCompleted Boolean    @default(false)
@@ -120,12 +118,11 @@ model UserProgress {
   @@unique([userId, chapterId])
 }
 
-
 model Purchase {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  id          String     @id @default(uuid()) @db.Uuid
   userId      String
 
-  courseId    String     @db.ObjectId
+  courseId    String     @db.Uuid
   course      Course     @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   createdAt   DateTime   @default(now())
@@ -136,7 +133,7 @@ model Purchase {
 }
 
 model StripeCustomer {
-  id                String     @id @default(auto()) @map("_id") @db.ObjectId
+  id                String     @id @default(uuid()) @db.Uuid
   userId            String     @unique
   stripeCustomerId String     @unique
 
@@ -145,12 +142,12 @@ model StripeCustomer {
 }
 
 model Logging {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  url       String
-  method    String
-  body      String?
-  response  String?
-  statusCode Int?
-  errorMessage String?
-  createdAt DateTime @default(now())
+  id             String   @id @default(uuid()) @db.Uuid
+  url            String
+  method         String
+  body           String?
+  response       String?
+  statusCode     Int?
+  errorMessage   String?
+  createdAt      DateTime @default(now())
 }

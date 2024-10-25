@@ -82,7 +82,3 @@ Creating a Role-Based Access Control (RBAC) feature for an institution like ETH 
 - Gather feedback from users (instructors, students, staff) to refine roles and permissions over time.
 
 This structure can help ETH Zurich manage access effectively while ensuring that each role can perform its necessary functions within the LMS or application. If you have any specific requirements or scenarios in mind, feel free to share!
-
-/teacher/courses
-/teacher/create
-npx prisma studio
