@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d .next"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.23.5",
@@ -63,6 +65,8 @@
     "zustand": "^4.4.1"
   },
   "devDependencies": {
+    "gh-pages": "^6.2.0",
     "prisma": "^5.3.0"
-  }
+  },
+  "homepage": "https://mrchike.github.io/lms"
 }

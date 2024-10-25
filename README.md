@@ -30,7 +30,7 @@ Key Features:
 ### Cloning the repository
 
 ```shell
-git clone https://github.com/MrChike/next13-lms-platform.git
+git clone https://github.com/MrChike/LMS.git
 ```
 
 ### Install packages
@@ -50,6 +50,7 @@ NEXT_PUBLIC_CLERK_SIGN_UP_URL=
 NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=
 NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_TEACHER_ID=
 
 DATABASE_URL=
 
@@ -61,13 +62,11 @@ MUX_TOKEN_SECRET=
 
 STRIPE_API_KEY=
 STRIPE_WEBHOOK_SECRET=
-
-NEXT_PUBLIC_TEACHER_ID=
 ```
 
 ### Setup Prisma
 
-Add MySQL Database (I used PlanetScale)
+Using Postgres Local Instance
 
 ```shell
 npx prisma migrate reset
