@@ -1,8 +1,20 @@
-# Build an LMS Platform: Next.js 13,  React, Stripe, Mux, Prisma, Tailwind, MySQL | Full Course 2023
+## Build an LMS Platform: Next.js 13.4.12, React 18.2.0, Typescript 5.2.2, Tailwind 3.3.3, Prisma 5.3.0, PostgreSQL, Docker, DjangoRestFramework(API)
 
-This is a repository for Build an LMS Platform: Next.js 13,  React, Stripe, Mux, Prisma, Tailwind, MySQL | Full Course 2023
+![My local image](./images/lms.jpg)
 
-[VIDEO TUTORIAL](https://www.youtube.com/watch?v=Big_aFLmekI)
+This repository is an ongoing enhancement of the original LMS platform created by CodeWithAntonio with the goal to decouple & implement extra features
+
+- DB Connection from online hosted platforms to local Instance support.
+- Decouple Dependency on Clerk for Api Authentication to enable custom backend apis like DRF, Spring, Expressjs ....
+- Include extra Video Streaming Option for YouTube & Vimeo
+- Implement Docker Support for easy support dealing with dependency issues on different OS
+- Include more Payment Processing Platforms like (Paypal, Flutterwave, Paystack)
+- Include Localization Support for students in multiple countries
+- Integrate extra options for video streaming like (Youtube, Vimeo)
+- Live Classroom Collaboration Between students for Brainstorming and presentations.
+- Dashboard Display with RBAC between Students, Teachers & the general Public (Anonymous)
+
+[YouTube](https://www.youtube.com/watch?v=Big_aFLmekI)
 
 Key Features:
 
@@ -25,7 +37,7 @@ Key Features:
 
 ### Prerequisites
 
-**Node version 18.x.x**
+**Node version 18.17.0**
 
 ### Cloning the repository
 
@@ -36,20 +48,20 @@ git clone https://github.com/MrChike/LMS.git
 ### Install packages
 
 ```shell
-npm i
+npm install
 ```
 
 ### Setup .env file
 
 
 ```js
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=
 NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=
-NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_APP_URL=
 NEXT_PUBLIC_TEACHER_ID=
 
 DATABASE_URL=
@@ -78,13 +90,8 @@ npx prisma studio
 ### Start the app
 
 ```shell
-npm run dev
+npm run dev # For Local Interactive Development
+npm run build # For Production Environment Simulation
+npm run export # For Static Files Build
+npm start # For Running your application
 ```
-
-## Available commands
-
-Running commands with npm `npm run [command]`
-
-| command         | description                              |
-| :-------------- | :--------------------------------------- |
-| `dev`           | Starts a development instance of the app |
