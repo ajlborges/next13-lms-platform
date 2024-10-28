@@ -10,6 +10,7 @@ This repository is an ongoing enhancement of the original LMS platform created b
 - Implement Docker Support for easy support dealing with dependency issues on different OS
 - Include more Payment Processing Platforms like (Paypal, Flutterwave, Paystack)
 - Include Localization Support for students in multiple countries
+- Include extra upload platforms like S3
 - Integrate extra options for video streaming like (Youtube, Vimeo)
 - Live Classroom Collaboration Between students for Brainstorming and presentations.
 - Dashboard Display with RBAC between Students, Teachers & the general Public (Anonymous)
