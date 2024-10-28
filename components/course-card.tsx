@@ -18,7 +18,7 @@ interface CourseCardProps {
 };
 
 // TODO: To update to be stored in db Schema enabling users to vote
-const Rating = ({ score, reviews }) => {
+const Rating = ({  }) => {
   const styles = {
     container: {
       display: 'flex',
@@ -61,7 +61,7 @@ const Rating = ({ score, reviews }) => {
       return reviews
   }
 
-  function formatReviewCount(count) {
+  function formatReviewCount(count: number) {
     if (count >= 1000) {
         return (count / 1000).toFixed(1) + 'k'; // Format to 'x.xk' if 1000 or more
     }
@@ -112,7 +112,7 @@ export const CourseCard = ({
                 {chaptersLength === 1 ? Math.floor(Math.random() * 9) + 12 : chaptersLength} {chaptersLength === 1 ? "Chapter" : "Chapters"}
               </span>
 
-              <Rating score={4.6} reviews={38000} />
+              <Rating />
             </div>
           </div>
           {progress !== null ? (
