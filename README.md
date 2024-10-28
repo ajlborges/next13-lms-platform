@@ -1,6 +1,6 @@
 ## Build an LMS Platform: Next.js 13.4.12, React 18.2.0, Typescript 5.2.2, Tailwind 3.3.3, Prisma 5.3.0, PostgreSQL, Docker, DjangoRestFramework(API)
 
-![My local image](./img/lms.png)
+![My local image](./img/lms_screenshot.png)
 
 This repository is an ongoing enhancement of the original LMS platform created by CodeWithAntonio with the goal to decouple & implement extra features
 
