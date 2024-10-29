@@ -98,16 +98,16 @@ export const CourseCard = ({
           />
         </div>
         <div className="flex flex-col pt-2">
-          <div className="text-lg md:text-base font-medium group-hover:text-sky-700 transition line-clamp-2">
+          <div className="text-lg md:text-base font-medium group-hover:text-sky-700 transition line-clamp-2" style={{ fontFamily: 'system-ui' }}>
             {title}
           </div>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-muted-foreground" style={{fontSize: '15px', marginTop: '10px'}}>
             {category}
           </p>
           <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
             <div className="flex items-center gap-x-1 text-slate-500">
               <IconBadge size="sm" icon={BookOpen} />
-              <span>
+              <span style={{ fontSize: 'small' }}>
                 {/* TODO: Remove random generator logic if all chapters are updated in DB. This was just speed up the process */}
                 {chaptersLength === 1 ? Math.floor(Math.random() * 9) + 12 : chaptersLength} {chaptersLength === 1 ? "Chapter" : "Chapters"}
               </span>
