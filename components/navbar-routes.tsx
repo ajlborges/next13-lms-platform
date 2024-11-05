@@ -1,5 +1,6 @@
 "use client";
 
+import {AccountProfile} from "../components/profile/account-profile";
 import { UserButton, useAuth } from "@clerk/nextjs"; //TODO: Introduce External Authentication Login
 import { usePathname } from "next/navigation";
 import { LogOut } from "lucide-react";
@@ -27,6 +28,7 @@ export const NavbarRoutes = () => {
           <SearchInput />
         </div>
       )}
+      <AccountProfile />
       <div className="flex gap-x-2 ml-auto">
         {isTeacherPage || isCoursePage ? (
           <Link href="/search">

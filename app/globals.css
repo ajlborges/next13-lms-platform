@@ -85,4 +85,7 @@ body,
   font-size: 16px !important;
 }
 
-@import "~@uploadthing/react/styles.css"
+@import "~@uploadthing/react/styles.css";
+@import "../components/profile/account-profile.css";
+@import "../components/profile/accout-profile-icon.css";
+@import "../components/profile/accout-profile-menu.css";

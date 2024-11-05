@@ -21,9 +21,10 @@ export const CourseSidebar = async ({
   progressCount,
 }: CourseSidebarProps) => {
   const { userId } = auth();
+  console.log('course-sidebar', auth())
 
   if (!userId) {
-    return redirect("/");
+    return redirect("/search");
   }
 
   const purchase = await db.purchase.findUnique({

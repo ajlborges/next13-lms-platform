@@ -1,0 +1,15 @@
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.profile-image {
+    width: 40px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100px;
+}

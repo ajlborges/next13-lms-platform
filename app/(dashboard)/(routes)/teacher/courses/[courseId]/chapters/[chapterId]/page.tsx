@@ -2,11 +2,9 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Eye, LayoutDashboard, Video } from "lucide-react";
-
 import { db } from "@/lib/db";
 import { IconBadge } from "@/components/icon-badge";
 import { Banner } from "@/components/banner";
-
 import { ChapterTitleForm } from "./_components/chapter-title-form";
 import { ChapterDescriptionForm } from "./_components/chapter-description-form";
 import { ChapterAccessForm } from "./_components/chapter-access-form";
@@ -21,7 +19,7 @@ const ChapterIdPage = async ({
   const { userId } = auth();
 
   if (!userId) {
-    return redirect("/");
+    return redirect("/search");
   }
 
   const chapter = await db.chapter.findUnique({
@@ -35,7 +33,7 @@ const ChapterIdPage = async ({
   });
 
   if (!chapter) {
-    return redirect("/")
+    return redirect("/search")
   }
 
   const requiredFields = [
