@@ -10,7 +10,6 @@ const AccountProfile = () => {
   // Toggle the menu open/close
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-    console.log('It was clicked');
   };
 
   // Close the menu when clicking outside

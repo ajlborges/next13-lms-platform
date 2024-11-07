@@ -41,9 +41,9 @@ export const NavbarRoutes = () => {
             </Button>
           </Link>
         ) : null}
-        {/* <UserButton
+        <UserButton
           afterSignOutUrl="/search"
-        /> */}
+        />
         <AccountProfile />
       </div>
     </>

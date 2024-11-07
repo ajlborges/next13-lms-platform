@@ -13,6 +13,7 @@ enum MemberRole {
   ADMIN
   TEACHER
   STUDENT
+  PUBLIC
 }
 
 model Profile {
@@ -28,6 +29,9 @@ model Profile {
   role      MemberRole @default(STUDENT)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  lastLogin DateTime?
+  isStaff   Boolean   @default(true)
+  
 }
 
 model Course {
