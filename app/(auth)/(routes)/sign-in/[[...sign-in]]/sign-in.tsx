@@ -21,14 +21,14 @@ const SignIn = () => {
         password,
         rememberMe,
       });
-      console.log('response', response.data.access)
+      console.log('response', response.data.userId)
 
       // Check if the response is valid, and then redirect to the dashboard
-      if (response.data && response.data.token) {
+      if (response.data && response.data.access) {
         console.log("Login successful", response.data);
 
-        // Redirect to the dashboard or another page
-        window.location.href = "/search";  // Replace this with the URL you want to redirect to
+        // Redirect to landing page
+        window.location.href = "/register";  // Replace this with the URL you want to redirect to
       }
     } catch (error) {
       // Handle error (e.g., display an error message)

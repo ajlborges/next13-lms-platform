@@ -6,6 +6,13 @@ import { authMiddleware } from "@clerk/nextjs";
 export default authMiddleware({
   publicRoutes: ["/api/webhook", "/search"],
 });
+
+
+// export default function middleware(req) {
+//   // your logic here
+//   return new Response('Hello, world!');
+// }
+
  
 export const config = {
   matcher: ["/((?!.*\\..*|_next).*)", "/(api|trpc)(.*)"],
