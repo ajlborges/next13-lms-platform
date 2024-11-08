@@ -1,7 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+// To be replaced with custom authentication
 import { ClerkProvider } from '@clerk/nextjs'
+import { AppAuthProvider } from '@/components/providers/auth/app-auth-provider'
 import { ToastProvider } from '@/components/providers/toaster-provider'
 import { ConfettiProvider } from '@/components/providers/confetti-provider'
 
@@ -19,6 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
+    {/* <AppAuthProvider> */}
       <html lang="en">
         <body className={inter.className}>
           <ConfettiProvider />
@@ -26,6 +29,7 @@ export default function RootLayout({
           {children}
         </body>
       </html>
+    {/* </AppAuthProvider> */}
     </ClerkProvider>
   )
 }

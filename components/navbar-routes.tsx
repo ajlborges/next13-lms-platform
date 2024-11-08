@@ -8,9 +8,41 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { isTeacher } from "@/lib/teacher";
 import { SearchInput } from "./search-input";
+import { useState } from 'react';
+import axios from 'axios';
+
+const signIn = async (email, password) => {
+  try {
+    const res = await axios.post('http://127.0.0.1:8000/account/token/', {
+      email,
+      password,
+    });
+    return res.data;  // Return the response data
+  } catch (err) {
+    console.error('Login failed', err);  // Handle errors
+    return null;  // Return null or you can handle error differently
+  }
+};
+
+// Usage example
+async function signInUser() {
+  try {
+    const response = await signIn("chikeegonu@gmail.com", "kidazda20");
+    return response.userId;  // Return the userId
+  } catch (err) {
+    return `Error: ${err}`;  // Return the error message
+  }
+}
+
+// You can now call signInUser and await its result elsewhere
+// For example:
+
+signInUser().then(userId => {console.log('...', userId)});
 
 export const NavbarRoutes = () => {
-  const { userId } = useAuth();
+  // const { userId } = useAuth();
+
+  const userId = signInUser().then(userId => {console.log('...', userId)});
   const pathname = usePathname();
 
   // const isStudentPage = pathname?.startsWith("/student");

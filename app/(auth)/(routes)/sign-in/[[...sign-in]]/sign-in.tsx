@@ -3,11 +3,16 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const SignIn = () => {
-  const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
+interface SignInProps {
+  login: (user: any, token: string) => void;
+}
+
+const SignIn = ({ login }: SignInProps) => {
+  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("mrchike@mailinator.com");
   const [password, setPassword] = useState("mrchike123");
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handlePasswordToggle = () => {
     setShowPassword((prev) => !prev);
@@ -23,9 +28,15 @@ const SignIn = () => {
       });
       console.log('response', response.data.userId)
 
-      // Check if the response is valid, and then redirect to the dashboard
       if (response.data && response.data.access) {
+        const { access, userId } = response.data;
         console.log("Login successful", response.data);
+
+        // Store token in localStorage or sessionStorage
+        localStorage.setItem('auth_token', access);
+
+        // Call the login function passed from parent (AppAuthProvider)
+        login({ userId, email, access }, access);  // Pass user data and token to context
 
         // Redirect to landing page
         window.location.href = "/register";  // Replace this with the URL you want to redirect to
