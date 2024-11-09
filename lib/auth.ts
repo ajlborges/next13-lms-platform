@@ -1,16 +1,16 @@
 // lib/auth.ts
-import { parseCookies } from 'nookies';
-import { GetServerSidePropsContext } from 'next';
+import { NextRequest } from 'next/server';
 
-export function getSession(req: GetServerSidePropsContext['req']) {
-  const cookies = parseCookies({ req });
+export function getSession(req: NextRequest) {
+  // Manually parse cookies from the request
+  const cookies = req.cookies;
 
-  const token = cookies.auth_token;
+  // Extract the token from cookies
+  const token = cookies.get('auth_token');
 
   if (!token) {
-    return null;  // No session/token means the user is not authenticated
+    return null; // No session/token means the user is not authenticated
   }
 
-  // Optionally, verify the token if using JWT (e.g., with jwt.verify)
   return token;
 }

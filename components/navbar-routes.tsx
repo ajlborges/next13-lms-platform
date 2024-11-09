@@ -1,52 +1,44 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import AccountProfile from "../components/profile/account-profile";
-import { UserButton, useAuth } from "@clerk/nextjs"; //TODO: Introduce External Authentication Login
 import { usePathname } from "next/navigation";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { isTeacher } from "@/lib/teacher";
 import { SearchInput } from "./search-input";
-import { useState } from 'react';
 import axios from 'axios';
 
-const signIn = async (email, password) => {
+// Helper function to fetch user data
+const fetchUserData = async (email = "chikeegonu@gmail.com", password = "kidazda20") => {
   try {
-    const res = await axios.post('http://127.0.0.1:8000/account/token/', {
+    const response = await axios.post('http://127.0.0.1:8000/account/token/', {
       email,
       password,
     });
-    return res.data;  // Return the response data
-  } catch (err) {
-    console.error('Login failed', err);  // Handle errors
-    return null;  // Return null or you can handle error differently
+    return response.data.userId;
+  } catch (error) {
+    console.error('Error fetching user data:', error); // Log error if any
+    return null;
   }
 };
 
-// Usage example
-async function signInUser() {
-  try {
-    const response = await signIn("chikeegonu@gmail.com", "kidazda20");
-    return response.userId;  // Return the userId
-  } catch (err) {
-    return `Error: ${err}`;  // Return the error message
-  }
-}
-
-// You can now call signInUser and await its result elsewhere
-// For example:
-
-signInUser().then(userId => {console.log('...', userId)});
-
 export const NavbarRoutes = () => {
-  // const { userId } = useAuth();
+  const [userId, setUserId] = useState<string | null>(null);
 
-  const userId = signInUser().then(userId => {console.log('...', userId)});
+  // Fetch user data on mount
+  useEffect(() => {
+    const getUserData = async () => {
+      const user = await fetchUserData();
+      setUserId(user); // Update the state with the fetched user data
+    };
+
+    getUserData();
+  }, []); // Empty dependency array means this effect runs once on mount
+
   const pathname = usePathname();
 
-  // const isStudentPage = pathname?.startsWith("/student");
-  // const isAnonymousPage = pathname?.startsWith("/");
   const isTeacherPage = pathname?.startsWith("/teacher");
   const isCoursePage = pathname?.includes("/courses");
   const isSearchPage = pathname === "/search";
@@ -66,18 +58,15 @@ export const NavbarRoutes = () => {
               Exit
             </Button>
           </Link>
-        ) : isTeacher(userId) ? (
+        ) : userId && isTeacher(userId) ? (
           <Link href="/teacher/courses">
             <Button size="sm" variant="ghost">
               Create Course
             </Button>
           </Link>
         ) : null}
-        <UserButton
-          afterSignOutUrl="/search"
-        />
         <AccountProfile />
       </div>
     </>
-  )
-}
+  );
+};

@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
-    {/* <AppAuthProvider> */}
+    // <ClerkProvider>
+    // <AppAuthProvider>
       <html lang="en">
         <body className={inter.className}>
           <ConfettiProvider />
@@ -29,7 +29,7 @@ export default function RootLayout({
           {children}
         </body>
       </html>
-    {/* </AppAuthProvider> */}
-    </ClerkProvider>
+    // </AppAuthProvider>
+    // </ClerkProvider>
   )
 }
