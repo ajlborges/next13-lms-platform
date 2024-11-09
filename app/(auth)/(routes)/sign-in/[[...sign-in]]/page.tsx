@@ -1,7 +1,9 @@
-// import { SignIn } from "@clerk/nextjs";
 import SignIn from "./sign-in";
- 
-// TODO: Create a Sign in Component in NextJs
+
+const login = (user: any, token: string) => {
+  console.log('User logged in:', user, 'Token:', token);
+};
+
 export default function Page() {
-  return <SignIn />;
+  return <SignIn login={login} />;
 }
