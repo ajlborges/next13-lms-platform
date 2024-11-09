@@ -142,7 +142,7 @@ const SignIn = ({ login }: SignInProps) => {
               </div>
 
               <p className="text-sm !mt-8 text-center text-gray-800">
-                Don't have an account{" "}
+                Don&apos;t have an account{" "}
                 <a
                   href="/sign-up/"
                   className="text-black font-semibold hover:underline ml-1 whitespace-nowrap"
