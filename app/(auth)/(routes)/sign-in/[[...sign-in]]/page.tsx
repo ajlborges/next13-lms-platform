@@ -1,21 +1,13 @@
-// Indicating that this is a server action function
-"use server";
+'use client';
 
-// Import your SignIn component
 import SignIn from "./sign-in";
 
-// Make the login function async
-const login = async (user: any, token: string) => {
-  try {
-    console.log('User logged in:', user, 'Token:', token);
-    // If you have async operations, such as saving to a database, you can do it here
-    // For example, await someDatabaseCall(token);
-  } catch (error) {
-    console.error("Error during login:", error);
-  }
-};
-
-// Export the page with the login function as a prop
 export default function Page() {
+  const login = (user: any, token: string) => {
+    // This function is for client-side logic only
+    console.log('User logged in:', user, 'Token:', token);
+    // Store the token in a state or update context
+  };
+
   return <SignIn login={login} />;
 }

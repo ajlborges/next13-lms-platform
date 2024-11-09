@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import axios from "axios";
 
 interface SignInProps {
   login: (user: any, token: string) => void;
@@ -21,29 +21,30 @@ const SignIn = ({ login }: SignInProps) => {
   // Handle form submission (button click)
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/account/token/', {
+      const response = await axios.post("/api/auth/login", {
         email,
         password,
         rememberMe,
       });
-      console.log('response', response.data.userId)
 
-      if (response.data && response.data.access) {
-        const { access, userId } = response.data;
+      if (response.data.success && response.data.data.access) {
+        const { access, userId } = response.data.data;
         console.log("Login successful", response.data);
 
         // Store token in localStorage or sessionStorage
-        localStorage.setItem('auth_token', access);
+        localStorage.setItem("auth_token", access);
 
-        // Call the login function passed from parent (AppAuthProvider)
-        login({ userId, email, access }, access);  // Pass user data and token to context
+        // Call the login function passed from parent (AppAuthProvider) to update context
+        login({ userId, email, access }, access);  // This updates context or global state
 
-        // Redirect to landing page
-        window.location.href = "/register";  // Replace this with the URL you want to redirect to
+        // Redirect to the next page
+        window.location.href = "/register";  // Replace with the desired redirect URL
+      } else {
+        setError("Login failed: " + response.data.message);
       }
     } catch (error) {
-      // Handle error (e.g., display an error message)
-      console.error('Login failed', error);
+      console.error("Login failed", error);
+      setError("An error occurred during login.");
     }
   };
 
@@ -84,7 +85,7 @@ const SignIn = ({ login }: SignInProps) => {
                 <div className="relative flex items-center">
                   <input
                     name="password"
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     required
                     className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-black focus:ring-2 focus:ring-blue-500"
                     value={password}
@@ -134,14 +135,14 @@ const SignIn = ({ login }: SignInProps) => {
                 <button
                   type="button"
                   className="w-full shadow-xl py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-black hover:bg-yellow-800 focus:outline-none"
-                  onClick={handleSubmit} // Handle button click to submit the form
+                  onClick={handleSubmit}
                 >
                   Log in
                 </button>
               </div>
 
               <p className="text-sm !mt-8 text-center text-gray-800">
-                Don't have an account{' '}
+                Don't have an account{" "}
                 <a
                   href="/sign-up/"
                   className="text-black font-semibold hover:underline ml-1 whitespace-nowrap"
@@ -150,15 +151,6 @@ const SignIn = ({ login }: SignInProps) => {
                 </a>
               </p>
             </form>
-          </div>
-
-          <div className="lg:h-[400px] md:h-[300px] max-md:mt-8">
-            <img
-              src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/mem7czf8414pqvr9fzv0.gif"
-              className="w-full h-full max-md:w-4/5 mx-auto block object-cover"
-              alt="Dining Experience"
-              style={{ marginLeft: '50px' }}
-            />
           </div>
         </div>
       </div>
