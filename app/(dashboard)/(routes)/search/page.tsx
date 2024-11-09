@@ -1,4 +1,3 @@
-import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 import { db } from "@/lib/db";
@@ -7,6 +6,7 @@ import { getCourses } from "@/actions/get-courses";
 import { CoursesList } from "@/components/courses-list";
 
 import { Categories } from "./_components/categories";
+import axios from 'axios';
 
 interface SearchPageProps {
   searchParams: {
@@ -15,10 +15,23 @@ interface SearchPageProps {
   }
 };
 
+// TODO
+const fetchUserData = async (email="chikeegonu@gmail.com", password="kidazda20") => {
+  try {
+    const response = await axios.post('http://127.0.0.1:8000/account/token/', {
+      email,
+      password,
+    });
+    return response.data.userId;
+  } catch (error) {
+    console.error('Error fetching user data:', error); // Log error if any
+  }
+};
+
 const SearchPage = async ({
   searchParams
 }: SearchPageProps) => {
-  const { userId } = auth();
+  const userId = await fetchUserData();
 
   if (!userId) {
     return redirect("/search");
