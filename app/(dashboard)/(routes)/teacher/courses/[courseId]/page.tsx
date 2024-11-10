@@ -1,4 +1,3 @@
-import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { CircleDollarSign, File, LayoutDashboard, ListChecks } from "lucide-react";
 
@@ -14,13 +13,14 @@ import { PriceForm } from "./_components/price-form";
 import { AttachmentForm } from "./_components/attachment-form";
 import { ChaptersForm } from "./_components/chapters-form";
 import { Actions } from "./_components/actions";
+import { fetchUserData } from "../../../(root)/page";
 
 const CourseIdPage = async ({
   params
 }: {
   params: { courseId: string }
 }) => {
-  const { userId } = auth();
+  const { userId } = await fetchUserData();
 
   if (!userId) {
     return redirect("/search");

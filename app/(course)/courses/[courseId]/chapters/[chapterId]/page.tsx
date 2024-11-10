@@ -1,4 +1,3 @@
-import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { File } from "lucide-react";
 
@@ -10,13 +9,14 @@ import { Preview } from "@/components/preview";
 import { VideoPlayer } from "./_components/video-player";
 import { CourseEnrollButton } from "./_components/course-enroll-button";
 import { CourseProgressButton } from "./_components/course-progress-button";
+import { fetchUserData } from "@/app/(dashboard)/(routes)/(root)/page";
 
 const ChapterIdPage = async ({
   params
 }: {
   params: { courseId: string; chapterId: string }
 }) => {
-  const { userId } = auth();
+  const { userId } = await fetchUserData();
   
   if (!userId) {
     return redirect("/search");

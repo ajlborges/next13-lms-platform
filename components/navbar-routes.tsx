@@ -8,30 +8,17 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { isTeacher } from "@/lib/teacher";
 import { SearchInput } from "./search-input";
-import axios from 'axios';
-
-// Helper function to fetch user data
-const fetchUserData = async (email = "chikeegonu@gmail.com", password = "kidazda20") => {
-  try {
-    const response = await axios.post('http://127.0.0.1:8000/account/token/', {
-      email,
-      password,
-    });
-    return response.data.userId;
-  } catch (error) {
-    console.error('Error fetching user data:', error); // Log error if any
-    return null;
-  }
-};
+import { fetchUserData } from "@/app/(dashboard)/(routes)/(root)/page";
 
 export const NavbarRoutes = () => {
-  const [userId, setUserId] = useState<string | null>(null);
+  const [userIdK, setUserIdK] = useState<string | null>(null);
 
   // Fetch user data on mount
   useEffect(() => {
     const getUserData = async () => {
       const user = await fetchUserData();
-      setUserId(user); // Update the state with the fetched user data
+      const {UserId} = user
+      setUserIdK(user); // Update the state with the fetched user data
     };
 
     getUserData();
@@ -58,7 +45,7 @@ export const NavbarRoutes = () => {
               Exit
             </Button>
           </Link>
-        ) : userId && isTeacher(userId) ? (
+        ) : userIdK && isTeacher(userIdK) ? (
           <Link href="/teacher/courses">
             <Button size="sm" variant="ghost">
               Create Course

@@ -1,12 +1,12 @@
-import { auth } from "@clerk/nextjs";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 
 import { isTeacher } from "@/lib/teacher";
+import { fetchUserData } from "@/app/(dashboard)/(routes)/(root)/page";
  
 const f = createUploadthing();
  
-const handleAuth = () => {
-  const { userId } = auth();
+const handleAuth = async () => {
+  const { userId } = await fetchUserData();
   const isAuthorized = isTeacher(userId);
 
   if (!userId || !isAuthorized) throw new Error("Unauthorized");
