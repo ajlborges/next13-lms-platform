@@ -16,7 +16,6 @@ const guestRoutes = [
     href: "/",
   },
 ]
- // TODO: confirm if route adds up];
 
 const teacherRoutes = [
   {

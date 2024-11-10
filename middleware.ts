@@ -1,33 +1,3 @@
-// import { NextResponse, NextRequest } from 'next/server';
-// import { getSession } from './lib/auth';  // Updated getSession to support NextRequest
-
-// export function middleware(req: NextRequest) {
-//   const publicRoutes = [
-//     "/", "/api/webhook", "/search", "/sign-up", 
-//     "/reset-password", "/teacher", "sign-in"];
-//   const url = req.nextUrl.pathname;
-
-//   // Skip authentication check for public routes
-//   if (publicRoutes.includes(url)) {
-//     return NextResponse.next();
-//   }
-
-//   // Retrieve the session or token from cookies (or headers, depending on your setup)
-//   const session = getSession(req);  // Works with updated getSession
-  
-//   if (!session) {
-//     // If no session, redirect to login page
-//     return NextResponse.redirect(new URL('/sign-in', req.url));
-//   }
-
-//   // If session exists, continue with the request
-//   return NextResponse.next();
-// }
-
-// export const config = {
-//   matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)", "/app(.*)"],
-// };
-
 // lib/middleware.ts
 import { NextResponse, NextRequest } from 'next/server';
 import { getSession } from './lib/auth';  // Updated getSession to support NextRequest

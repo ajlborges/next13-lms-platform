@@ -9,8 +9,10 @@ interface SignInProps {
 
 const SignIn = ({ login }: SignInProps) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("mrchike@mailinator.com");
-  const [password, setPassword] = useState("mrchike123");
+  // const [email, setEmail] = useState("mrchike@mailinator.com");
+  // const [password, setPassword] = useState("mrchike123");
+  const [email, setEmail] = useState("chikeegonu@gmail.com");
+  const [password, setPassword] = useState("kidazda20");
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -21,10 +23,9 @@ const SignIn = ({ login }: SignInProps) => {
   // Handle form submission (button click)
   const handleSubmit = async () => {
     try {
-      console.log('sign in hit')
-      // const response = await axios.post("/api/auth/login", {
+      console.log('sign in hit')    
       console.log(`${process.env.NEXT_PUBLIC_APP_URL || ""}/app/api/auth/login`)
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL || ""}/app/api/auth/login/route`, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/auth/login`, {
         email,
         password,
         rememberMe,

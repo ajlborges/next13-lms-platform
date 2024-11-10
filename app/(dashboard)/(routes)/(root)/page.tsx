@@ -1,28 +1,29 @@
 import { redirect } from "next/navigation";
 import { CheckCircle, Clock } from "lucide-react";
-
 import { getDashboardCourses } from "@/actions/get-dashboard-courses";
 import { CoursesList } from "@/components/courses-list";
-
 import { InfoCard } from "./_components/info-card";
-
-// import axiosInstance from '../../../api/axios';
 import axios from 'axios';
 
-const fetchUserData = async (email="chikeegonu@gmail.com", password="kidazda20") => {
+const api = axios.create({
+  baseURL: `${process.env.BACKEND_API_URL}`,
+});
+
+export const fetchUserData = async (email="chikeegonu@gmail.com", password="kidazda20") => {
   try {
-    const response = await axios.post('http://127.0.0.1:8000/account/token/', {
+    const response = await api.post('/account/token/', {
       email,
       password,
     });
-    return response.data.userId;
+    console.log('app/(dashboard)/(routes)/(root)/page.tsx', response.data.userId)
+    return response.data;
   } catch (error) {
     console.error('Error fetching user data:', error); // Log error if any
   }
 };
 
 export default async function Dashboard() {
-  const userId = await fetchUserData();
+  const {userId} = await fetchUserData();
 
   if (!userId) {
     return redirect("/search");
