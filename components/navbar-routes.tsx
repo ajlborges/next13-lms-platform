@@ -1,31 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import AccountProfile from "../components/profile/account-profile";
 import { usePathname } from "next/navigation";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 import { isTeacher } from "@/lib/teacher";
+
 import { SearchInput } from "./search-input";
 import { fetchUserData } from "@/app/(dashboard)/(routes)/(root)/page";
+import AccountProfile from "./profile/account-profile";
 
 export const NavbarRoutes = () => {
-  const [userIdK, setUserIdK] = useState<string | null>(null);
-
-  // Fetch user data on mount
-  useEffect(() => {
-    const getUserData = async () => {
-      const user = await fetchUserData();
-      const {UserId} = user
-      setUserIdK(user); // Update the state with the fetched user data
-    };
-
-    getUserData();
-  }, []); // Empty dependency array means this effect runs once on mount
-
+  // const { userId } = fetchUserData();
+  const userId = '25a21c32-8eeb-453f-a235-d12331c5c293';
   const pathname = usePathname();
+  console.log('components/navbar-routes.tsx', userId)
 
+  // const isStudentPage = pathname?.startsWith("/student");
+  // const isAnonymousPage = pathname?.startsWith("/");
   const isTeacherPage = pathname?.startsWith("/teacher");
   const isCoursePage = pathname?.includes("/courses");
   const isSearchPage = pathname === "/search";
@@ -45,7 +38,7 @@ export const NavbarRoutes = () => {
               Exit
             </Button>
           </Link>
-        ) : userIdK && isTeacher(userIdK) ? (
+        ) : isTeacher(userId) ? (
           <Link href="/teacher/courses">
             <Button size="sm" variant="ghost">
               Create Course
@@ -55,5 +48,5 @@ export const NavbarRoutes = () => {
         <AccountProfile />
       </div>
     </>
-  );
-};
+  )
+}
