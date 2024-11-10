@@ -5,7 +5,8 @@ import { getSession } from './lib/auth';  // Updated getSession to support NextR
 export async function middleware(req: NextRequest) {
   const publicRoutes = [
     "/", "/api/webhook", "/search", "/sign-up", 
-    "/reset-password", "/teacher/create", "/sign-in", "/app", "/teacher/courses", "/chapters"
+    "/reset-password", "/teacher/create", "/sign-in", 
+    "/app", "/teacher/courses", "/chapters", "teacher/analytics"
   ];
 
   const url = req.nextUrl.pathname;
