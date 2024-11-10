@@ -21,14 +21,18 @@ const SignIn = ({ login }: SignInProps) => {
   // Handle form submission (button click)
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("/api/auth/login", {
+      console.log('sign in hit')
+      // const response = await axios.post("/api/auth/login", {
+      console.log(`${process.env.NEXT_PUBLIC_APP_URL || ""}/app/api/auth/login`)
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL || ""}/app/api/auth/login/route`, {
         email,
         password,
         rememberMe,
       });
+      console.log('sign in hit', response)
 
-      if (response.data.success && response.data.data.access) {
-        const { access, userId } = response.data.data;
+      if (response.data && response.data.access) {
+        const { access, userId } = response.data;
         console.log("Login successful", response.data);
 
         // Store token in localStorage or sessionStorage
@@ -151,6 +155,15 @@ const SignIn = ({ login }: SignInProps) => {
                 </a>
               </p>
             </form>
+          </div>
+
+          <div className="lg:h-[400px] md:h-[300px] max-md:mt-8">
+            <img
+              src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/mem7czf8414pqvr9fzv0.gif"
+              className="w-full h-full max-md:w-4/5 mx-auto block object-cover"
+              alt="Dining Experience"
+              style={{ marginLeft: '50px' }}
+            />
           </div>
         </div>
       </div>

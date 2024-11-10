@@ -6,7 +6,7 @@ export const Logo = () => {
       height={130}
       width={130}
       alt="logo"
-      src="/ETH_logo_converted_fixed.svg"
+      src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zrsg7ckoisggoie9nauz.png"
     />
   )
 }

@@ -2,7 +2,8 @@
 const nextConfig = {
   images: {
     domains: [
-      "utfs.io"
+      "utfs.io",
+      "dev-to-uploads.s3.amazonaws.com"
     ]
   },
   experimental: {
