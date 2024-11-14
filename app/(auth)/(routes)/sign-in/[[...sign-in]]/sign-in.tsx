@@ -9,47 +9,55 @@ interface SignInProps {
 
 const SignIn = ({ login }: SignInProps) => {
   const [showPassword, setShowPassword] = useState(false);
-  // const [email, setEmail] = useState("mrchike@mailinator.com");
-  // const [password, setPassword] = useState("mrchike123");
   const [email, setEmail] = useState("chikeegonu@gmail.com");
   const [password, setPassword] = useState("kidazda20");
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handlePasswordToggle = () => {
     setShowPassword((prev) => !prev);
   };
 
-  // Handle form submission (button click)
+  const playLoginSound = () => {
+    const audio = new Audio("https://commondatastorage.googleapis.com/codeskulptor-assets/week7-brrring.m4a"); // Replace with the actual path to the sound file
+    audio.play();
+  };
+
   const handleSubmit = async () => {
+    setIsLoading(true);
     try {
-      console.log('sign in hit')    
-      console.log(`${process.env.NEXT_PUBLIC_APP_URL || ""}/app/api/auth/login`)
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/auth/login`, {
+      const response = await axios.post(`/api/auth/login`, {
         email,
         password,
         rememberMe,
       });
-      console.log('sign in hit', response)
+      console.log("sign in hit", response);
 
-      if (response.data && response.data.access) {
-        const { access, userId } = response.data;
-        console.log("Login successful", response.data);
+      if (response.data && response.data.data.access) {
+        const { access, userId } = response.data.data;
+        console.log("Login successful", response.data.data);
 
-        // Store token in localStorage or sessionStorage
+        // Store token in localStorage
         localStorage.setItem("auth_token", access);
 
         // Call the login function passed from parent (AppAuthProvider) to update context
-        login({ userId, email, access }, access);  // This updates context or global state
+        login({ userId, email, access }, access); // This updates context or global state
+
+        playLoginSound();
 
         // Redirect to the next page
-        window.location.href = "/register";  // Replace with the desired redirect URL
+        setTimeout(() => {
+          window.location.href = "/search"; // Replace with the desired redirect URL
+        }, 2500); // Wait for the Login sound to play before redirecting
       } else {
         setError("Login failed: " + response.data.message);
       }
     } catch (error) {
       console.error("Login failed", error);
       setError("An error occurred during login.");
+    } finally {
+      setIsLoading(false); // Stop loading after request completes
     }
   };
 
@@ -141,8 +149,34 @@ const SignIn = ({ login }: SignInProps) => {
                   type="button"
                   className="w-full shadow-xl py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-black hover:bg-yellow-800 focus:outline-none"
                   onClick={handleSubmit}
+                  disabled={isLoading} // Disable button when loading
                 >
-                  Log in
+                  {isLoading ? (
+                    <div className="flex justify-center items-center">
+                      <svg
+                        className="animate-spin h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 1 1 8 8"
+                        ></path>
+                      </svg>
+                    </div>
+                  ) : (
+                    "Log in"
+                  )}
                 </button>
               </div>
 
@@ -163,7 +197,7 @@ const SignIn = ({ login }: SignInProps) => {
               src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/mem7czf8414pqvr9fzv0.gif"
               className="w-full h-full max-md:w-4/5 mx-auto block object-cover"
               alt="Dining Experience"
-              style={{ marginLeft: '50px' }}
+              style={{ marginLeft: "50px" }}
             />
           </div>
         </div>
