@@ -4,15 +4,18 @@ import { getSession } from './lib/auth';  // Updated getSession to support NextR
 
 export async function middleware(req: NextRequest) {
   const publicRoutes = [
-    "/", "/api/webhook", "/search", "/sign-up", 
-    "/reset-password", "/teacher/create", "/sign-in", 
-    "/app", "/teacher/courses", "/chapters", "teacher/analytics"
+    "/", "/search", "/sign-up", 
+    "/reset-password", "/sign-in", 
+    "/app", "/chapters", 
+    // "/", "/api/webhook", "/search", "/sign-up", 
+    // "/reset-password", "/teacher/create", "/sign-in", 
+    // "/app", "/teacher/courses", "/chapters", "teacher/analytics"
   ];
 
   const url = req.nextUrl.pathname;
 
   // Skip authentication check for public routes
-  if (publicRoutes.includes(url)) {
+  if (publicRoutes.includes(url) || url.startsWith('/')) {
     return NextResponse.next();
   }
 

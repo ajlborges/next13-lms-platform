@@ -12,13 +12,10 @@ import { fetchUserData } from "@/app/(dashboard)/(routes)/(root)/page";
 import AccountProfile from "./profile/account-profile";
 
 export const NavbarRoutes = () => {
-  // const { userId } = fetchUserData();
-  const userId = '25a21c32-8eeb-453f-a235-d12331c5c293';
+  const userId = `${process.env.NEXT_PUBLIC_TEACHER_ID}`;
   const pathname = usePathname();
   console.log('components/navbar-routes.tsx', userId)
 
-  // const isStudentPage = pathname?.startsWith("/student");
-  // const isAnonymousPage = pathname?.startsWith("/");
   const isTeacherPage = pathname?.startsWith("/teacher");
   const isCoursePage = pathname?.includes("/courses");
   const isSearchPage = pathname === "/search";
