@@ -48,7 +48,7 @@ const SignUp = () => {
 
     try {
       // Make the API request with Axios
-      const response = await axios.post('http://127.0.0.1:8000/account/register/', formData);
+      const response = await axios.post(`${process.env.BACKEND_API_URL}/account/register`, formData);
       console.log('Response:', response.data); 
       alert('Sign up successful!');
     } catch (error) {
