@@ -6,7 +6,7 @@ export async function middleware(req: NextRequest) {
   const publicRoutes = [
     "/", "/search", "/sign-up", 
     "/reset-password", "/sign-in", 
-    "/app", "/chapters", 
+    "/app", "/chapters", "/api/webhook",
     // "/", "/api/webhook", "/search", "/sign-up", 
     // "/reset-password", "/teacher/create", "/sign-in", 
     // "/app", "/teacher/courses", "/chapters", "teacher/analytics"
